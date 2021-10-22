@@ -40,3 +40,6 @@ jobs:
         run: |
           cd whitewhale
           pytest
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile.build --tag whitewhale:$(date +%s)
+s
