@@ -36,9 +36,9 @@ jobs:
         run: |
           cd whitewhale
           pytest
-      - name: Build the Docker image
-        run: |
-          docker build . --file Dockerfile.build --tag whitewhale:$(date +%s)
+#      - name: Build the Docker image
+#        run: |
+#          docker build . --file Dockerfile.build --tag whitewhale:$(date +%s)
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
@@ -46,4 +46,6 @@ jobs:
       - name: Publish Image to Container Registry
         uses: ripplr-io/docr-docker-publish@v1
         with:
+          dockerfile: ./Dockerfile.build
           image_path: whitewhale/whitewhale
+
