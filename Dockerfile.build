@@ -1,6 +1,11 @@
 # syntax=docker/dockerfile:1
 FROM python:3.10-slim
 
+# Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
+RUN mkdir /code/
+WORKDIR /code/
+ADD . /code/
+
 # Install build deps, then run `pip install`, then remove unneeded build deps all in a single step.
 # Correct the path to your production requirements file, if needed.
 RUN set -ex \
@@ -10,15 +15,10 @@ RUN set -ex \
     libpq-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
-    && pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir -r /code/requirements.txt \
     \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
-
-# Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
-RUN mkdir /code/
-WORKDIR /code/
-ADD . /code/
 
 # uWSGI will listen on this port
 EXPOSE 8000
