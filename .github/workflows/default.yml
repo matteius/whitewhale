@@ -44,7 +44,7 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Publish Image to Container Registry
-        uses: ripplr-io/docr-docker-publish@v1
+        uses: ./.github/workflows/docker_build_and_push
         with:
           dockerfile: ./Dockerfile.build
           image_path: whitewhale/whitewhale
