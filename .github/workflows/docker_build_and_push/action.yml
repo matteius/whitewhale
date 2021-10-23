@@ -21,19 +21,23 @@ inputs:
     required: false
     default: '.'
   database_user:
-    description: The django database user
+    description: The Django Database USER
     required: false
     default: 'unknown'
   database_pw:
-    description: The django database password
+    description: The Django Database PASSWORD
     required: false
     default: 'unknown'
   database_host:
-    description: The django database host
+    description: The Django Database HOST
     required: false
     default: 'unknown'
   database_port:
-    description: The django database port
+    description: The Django Database PORT
+    required: false
+    default: 'unknown'
+  django_secret_key:
+    description: The Django SECRET_KEY
     required: false
     default: 'unknown'
 
@@ -71,6 +75,7 @@ runs:
         --build-arg DATABASE_PORT=${{ inputs.database_port }}
         --build-arg DATABASE_USER=${{ inputs.database_user }}
         --build-arg DATABASE_PASSWORD=${{ inputs.database_pw }}
+        --build-arg DJANGO_SECRET_KEY=${{ inputs.django_secret_key }}
 
     - name: Login to registry
       shell: bash
