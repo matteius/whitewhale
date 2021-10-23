@@ -21,9 +21,6 @@ RUN set -ex \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
-# uWSGI will listen on this port
-EXPOSE 8000
-
 # Add any static environment variables needed by Django or your settings file here:
 ENV DJANGO_SETTINGS_MODULE=whitewhale.settings
 
@@ -36,6 +33,9 @@ RUN DATABASE_URL='' python manage.py collectstatic --noinput
 
 # Uncomment after creating your docker-entrypoint.sh
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
+
+ENV TEST_SETTING=$TEST_SETTING
+RUN echo $TEST_SETTING
 
 # Start uWSGI
 CMD ["uwsgi", "--yaml", "/code/uwsgi.yml"]
