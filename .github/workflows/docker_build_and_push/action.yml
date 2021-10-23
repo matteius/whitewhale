@@ -20,6 +20,22 @@ inputs:
     description: The docker build context (usually '.')
     required: false
     default: '.'
+  database_user:
+    description: The django database user
+    required: false
+    default: 'unknown'
+  database_pw:
+    description: The django database password
+    required: false
+    default: 'unknown'
+  database_host:
+    description: The django database host
+    required: false
+    default: 'unknown'
+  database_port:
+    description: The django database port
+    required: false
+    default: 'unknown'
 
 outputs:
   image_url:
@@ -51,6 +67,11 @@ runs:
         -f ${{ inputs.dockerfile }}
         -t ${{ steps.image_tags.outputs.sha }}
         -t ${{ steps.image_tags.outputs.latest }}
+        --build-arg DATABASE_HOST=${{ inputs.database_host }}
+        --build-arg DATABASE_PORT=${{ inputs.database_port }}
+        --build-arg DATABASE_USER=${{ inputs.database_user }}
+        --build-arg DATABASE_PASSWORD=${{ inputs.database_pw }}
+
     - name: Login to registry
       shell: bash
       run: doctl registry login --expiry-seconds 600

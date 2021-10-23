@@ -34,8 +34,8 @@ RUN DATABASE_URL='' python manage.py collectstatic --noinput
 # Uncomment after creating your docker-entrypoint.sh
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
-ENV TEST_SETTING=$TEST_SETTING
-RUN echo $TEST_SETTING
+ENV DATABASE_PORT=$DATABASE_PORT
+RUN echo $DATABASE_PORT
 
 # Start uWSGI
 CMD ["uwsgi", "--yaml", "/code/uwsgi.yml"]
