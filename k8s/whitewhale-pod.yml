@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: whitewhale-pod
+  labels:
+    app: whitewhale
+spec:
+  containers:
+  - name: whitewhale
+    image: registry.digitalocean.com/whitewhale/whitewhale
+    ports:
+    - containerPort: 8001

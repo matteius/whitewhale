@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whitewhale
+  labels:
+    app: whitewhale
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: whitewhale
+  template:
+    metadata:
+      labels:
+        app: whitewhale
+    spec:
+      containers:
+        - name: whitewhale
+          image: registry.digitalocean.com/whitewhale/whitewhale
+          ports:
+          - containerPort: 8001
