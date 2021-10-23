@@ -1,6 +1,18 @@
 # syntax=docker/dockerfile:1
 FROM python:3.10-slim
 
+# Accept in enivornment secrets
+ARG DATABASE_HOST
+ARG DATABASE_PORT
+ARG DATABASE_USER
+ARG DATABASE_PASSWORD
+
+ENV DATABASE_HOST=$DATABASE_HOST
+ENV DATABASE_PORT=$DATABASE_PORT
+ENV DATABASE_USER=$DATABASE_USER
+ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
+RUN echo $DATABASE_PORT
+
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
 RUN mkdir /code/
 WORKDIR /code/
@@ -33,9 +45,6 @@ RUN DATABASE_URL='' python manage.py collectstatic --noinput
 
 # Uncomment after creating your docker-entrypoint.sh
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
-
-ENV DATABASE_PORT=$DATABASE_PORT
-RUN echo $DATABASE_PORT
 
 # Start uWSGI
 CMD ["uwsgi", "--yaml", "/code/uwsgi.yml"]
