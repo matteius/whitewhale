@@ -49,7 +49,7 @@ jobs:
         with:
           dockerfile: ./Dockerfile.build
           image_path: whitewhale/whitewhale
-          database_host: ${{ secrets.TEST_SETTING }}
+          database_host: ${{ secrets.DATABASE_HOST }}
           database_port: ${{ secrets.DATABASE_PORT }}
           database_user: ${{ secrets.DATABASE_USER }}
           database_pw: ${{ secrets.DATABASE_PASSWORD }}
