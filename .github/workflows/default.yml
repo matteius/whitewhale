@@ -53,4 +53,5 @@ jobs:
           database_port: ${{ secrets.DATABASE_PORT }}
           database_user: ${{ secrets.DATABASE_USER }}
           database_pw: ${{ secrets.DATABASE_PASSWORD }}
-          django_secret_key: ${{ secrets.DJANGO_SECRET_KEY }}
+          django_secret_key: ${{ secrets.TEST_SETTING }}
+
