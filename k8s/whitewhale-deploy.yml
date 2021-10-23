@@ -14,8 +14,10 @@ spec:
       labels:
         app: whitewhale
     spec:
+      terminationGracePeriodSeconds: 30
       containers:
         - name: whitewhale
           image: registry.digitalocean.com/whitewhale/whitewhale
+          imagePullPolicy: "Always"
           ports:
           - containerPort: 8001
