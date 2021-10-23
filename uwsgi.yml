@@ -1,0 +1,10 @@
+uwsgi:
+  master: true
+  procname-master: whitewhale-master
+  procname: whitewhale
+  chdir: /code/
+  module: whitewhale.uwsgi
+  processes: 4
+  enable-threads: true
+  single-interpreter: true
+  http: 0.0.0.0:8000

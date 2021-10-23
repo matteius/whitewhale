@@ -49,4 +49,4 @@ ENV UWSGI_WORKERS=2 UWSGI_THREADS=4
 # ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start uWSGI
-CMD ["uwsgi", "--show-config"]
+CMD ["uwsgi", "--yaml", "/code/whitewhale/uwsgi.yml"]
