@@ -51,6 +51,7 @@ jobs:
         with:
           dockerfile: ./Dockerfile.build
           image_path: whitewhale/whitewhale
+          database_name: ${{ secrets.DATABASE_NAME }}
           database_host: ${{ secrets.DATABASE_HOST }}
           database_port: ${{ secrets.DATABASE_PORT }}
           database_user: ${{ secrets.DATABASE_USER }}

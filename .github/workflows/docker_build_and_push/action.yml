@@ -28,6 +28,10 @@ inputs:
     description: The Django Database PASSWORD
     required: false
     default: 'unknown'
+  database_name:
+    description: The Django Database NAME
+    required: false
+    default: 'unknown'
   database_host:
     description: The Django Database HOST
     required: false
@@ -71,6 +75,7 @@ runs:
         -f ${{ inputs.dockerfile }}
         -t ${{ steps.image_tags.outputs.sha }}
         -t ${{ steps.image_tags.outputs.latest }}
+        --build-arg DATABASE_NAME=${{ inputs.database_name }}
         --build-arg DATABASE_HOST=${{ inputs.database_host }}
         --build-arg DATABASE_PORT=${{ inputs.database_port }}
         --build-arg DATABASE_USER=${{ inputs.database_user }}
