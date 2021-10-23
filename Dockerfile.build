@@ -11,7 +11,6 @@ ENV DATABASE_HOST=$DATABASE_HOST
 ENV DATABASE_PORT=$DATABASE_PORT
 ENV DATABASE_USER=$DATABASE_USER
 ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
-RUN echo $DATABASE_PORT
 
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
 RUN mkdir /code/
