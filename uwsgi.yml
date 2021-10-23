@@ -3,7 +3,7 @@ uwsgi:
   procname-master: whitewhale-master
   procname: whitewhale
   chdir: /code/whitewhale
-  module: whitewhale.uwsgi
+  module: whitewhale.wsgi
   processes: 4
   enable-threads: true
   single-interpreter: true
