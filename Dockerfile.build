@@ -30,9 +30,6 @@ ENV DJANGO_SETTINGS_MODULE=whitewhale.settings
 WORKDIR /code/whitewhale/
 RUN DATABASE_URL='' python manage.py collectstatic --noinput
 
-# Tell uWSGI where to find your wsgi file (change this):
-ENV UWSGI_WSGI_FILE=whitewhale/wsgi.py
-
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
 # ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
 
