@@ -8,4 +8,4 @@ uwsgi:
   enable-threads: true
   single-interpreter: true
   http: 0.0.0.0:8001
-  static-map2: /static/=/code/whitewhale/static
+  static-map2: /static=/code/whitewhale/static
