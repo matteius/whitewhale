@@ -32,7 +32,6 @@ RUN set -ex \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
     && pip install --no-cache-dir -r /code/requirements.txt \
-    && pytest \
     \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
@@ -42,6 +41,9 @@ ENV DJANGO_SETTINGS_MODULE=whitewhale.settings
 
 # Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
 WORKDIR /code/whitewhale/
+RUN set -ex \
+    && pytest \
+    && npm install \
 RUN DATABASE_URL='' python manage.py collectstatic --noinput
 
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
