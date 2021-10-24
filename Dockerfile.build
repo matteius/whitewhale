@@ -47,7 +47,8 @@ ENV DJANGO_SETTINGS_MODULE=whitewhale.settings
 WORKDIR /code/whitewhale/
 RUN set -ex \
     #&& pytest \
-    && npm install 
+    && npm install \
+    && npm run build 
 RUN DATABASE_URL='' python manage.py collectstatic --noinput
 
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
