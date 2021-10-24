@@ -10,7 +10,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to WhiteWhale Next.js Site powered by Django!</a>
+          Welcome to WhiteWhale Next.js Site powered by Django!
         </h1>
 
         <div className="grid">
