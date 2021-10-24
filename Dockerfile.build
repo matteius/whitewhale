@@ -40,6 +40,7 @@ RUN set -ex \
     && npm install \
     && npm run build \
     && DATABASE_URL='' python manage.py collectstatic --noinput \
+    && cp -rf build/server/* templates/ \
     \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
