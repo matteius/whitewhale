@@ -4,10 +4,8 @@ const Post = () => {
     return (
         <>
             <section>
-                <h3>Post title will appear here</h3>
-                <p> Post contents will appear here</p>
-                <button>Edit</button>
-                <button>Delete</button>
+                <h3>Add New Blog Post</h3>
+                <p>Blog Entries can be made using the <a href="/admin/">Django admin</a>.</p>
             </section>
         </>
     )
