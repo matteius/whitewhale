@@ -19,7 +19,7 @@ from django.urls import path, include
 from blog.views import index
 
 urlpatterns = [
-    path('/'), index,
+    path('/', index),
     path('admin/', admin.site.urls),
     path('health/', include('health_check.urls')),
 ]
