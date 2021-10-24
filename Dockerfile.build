@@ -23,6 +23,7 @@ ADD . /code/
 
 # Install build deps, then run `pip install`, then remove unneeded build deps all in a single step.
 # Correct the path to your production requirements file, if needed.
+WORKDIR /code/whitewhale/
 RUN set -ex \
     && BUILD_DEPS=" \
     build-essential \
@@ -36,20 +37,15 @@ RUN set -ex \
     && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && curl -L https://www.npmjs.com/install.sh | sh \
     && pip install --no-cache-dir -r /code/requirements.txt \
+    && npm install \
+    && npm run build \
+    && DATABASE_URL='' python manage.py collectstatic --noinput \
     \
-    #&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
 # Add any static environment variables needed by Django or your settings file here:
 ENV DJANGO_SETTINGS_MODULE=whitewhale.settings
-
-# Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
-WORKDIR /code/whitewhale/
-RUN set -ex \
-    #&& pytest \
-    && npm install \
-    && npm run build 
-RUN DATABASE_URL='' python manage.py collectstatic --noinput
 
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
 # ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
