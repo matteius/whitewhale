@@ -131,6 +131,7 @@ STATIC_ROOT = BASE_DIR / 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "build",
+    BASE_DIR / "public",
 ]
 
 # Default primary key field type
