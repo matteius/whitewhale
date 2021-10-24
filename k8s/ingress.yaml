@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whitewhale-ingress
+  namespace: whitewhale
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - whitewhale.mobi
+    - test.whitewhale.mobi
+    secretName: whitewhale-tls
+  rules:
+  - host: whitewhale.mobi
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: whitewhale
+            port:
+              number: 80
+  - host: test.whitewhale.mobi
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: whitewhale
+            port:
+              number: 80

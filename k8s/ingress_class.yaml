@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: ingress-nginx-controller
+spec:
+  controller: example.com/ingress-controller
+  parameters:
+    apiGroup: whitewhale.mobi
+    kind: IngressParameters
+    name: ingress-nginx-controller
