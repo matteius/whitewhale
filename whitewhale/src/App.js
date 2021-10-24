@@ -4,10 +4,19 @@ import Post from './components/Post'
 
 function App() {
     let [responseData, setResponseData] = React.useState('');
-    React.useEffect(() => {
-        setResponseData('hello')
-        console.log(responseData)
-    }, [setResponseData, responseData])
+    axios({
+        "method": "GET",
+        "url": "/blog/posts/",
+        "headers": {
+            "content-type": "application/json"
+        }
+    })
+        .then((response) => {
+            setResponseData(response.data)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     return (
     <div className="App">
       <Post />
