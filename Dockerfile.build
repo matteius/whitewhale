@@ -17,7 +17,6 @@ ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
 ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
 ENV DJANGO_SETTINGS_MODULE=whitewhale.settings
-ENV PUBLIC_URL=/static
 
 # Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
 RUN mkdir /code/
@@ -51,8 +50,6 @@ RUN set -ex \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
-# Add any static environment variables needed by Django or your settings file here:
-ENV DJANGO_SETTINGS_MODULE=whitewhale.settings
 
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
 # ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
