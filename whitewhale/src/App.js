@@ -52,9 +52,9 @@ function App() {
                                 <h2 class="post-title">{entry.title}</h2>
 
                                 <p class="post-meta">
-                                    By <a href="#" class="post-author">Matt Davis</a> under <a
-                                    class="post-category post-category-design" href="#">CSS</a> <a
-                                    class="post-category post-category-pure" href="#">Pure</a>
+                                    By <a href="#" class="post-author">Matt Davis</a> also
+                                    <a class="post-category post-category-design" href="#">LinkedIn</a>
+                                    <a class="post-category post-category-pure" href="#">Website</a>
                                 </p>
                             </header>
 
