@@ -23,13 +23,13 @@ function App() {
                 "Content-Type": "application/json"
             }
         })
-        .then((response) => {
-            console.log(response.data);
-            setResponseData(response.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+            .then((response) => {
+                console.log(response.data);
+                setResponseData(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }, [])
 
     React.useEffect(() => {
@@ -38,27 +38,40 @@ function App() {
 
 
     const renderTable = () => {
-      if (responseData) {
-        return responseData.map(entry => {
-          return (
-            <tr key={entry.slug}>
-              <td>{entry.title}</td>
-              <td>{entry.publish_date}</td>
-              <td>{entry.slug}</td>
-            </tr>
-          )
-        })
-      } else {
-        return <div>Loading ...</div>
-      }
+        if (!responseData) {
+            return <div>Loading ...</div>
+        }
+        else if (responseData.length === 0) {
+            return <div>No Blog Posts have been Published.</div>
+        }
+        else {
+            return responseData.map(entry => {
+                return (
+                    <table key={entry.slug}>
+                        <tbody>
+                        <tr>
+                            <td>{entry.title}</td>
+                        </tr>
+                        <tr>
+                            <td>{entry.publish_date}</td>
+                        </tr>
+                        <tr>
+                            <td>{entry.slug}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                )
+            })
+        }
     }
 
     return (
         <div className="App">
             <button type='button' onClick={fetchData}>Click for Data</button>
-	    <table><tbody>
-	     { renderTable() }
-            </tbody></table>
+
+            {renderTable()}
+
         </div>
     );
 }
