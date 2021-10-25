@@ -72,11 +72,10 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <button type='button' onClick={fetchData}>Click for Data</button>
-
-            {renderBlogEntries()}
-
+        <div className="pure-g">
+            <div className="pure-u-5-24"><button type='button' onClick={fetchData}>Click for Data</button></div>
+            <div className="pure-u-14-24">{renderBlogEntries()}</div>
+            <div className="pure-u-5-24"><p>Right Side</p></div>
         </div>
     );
 }
