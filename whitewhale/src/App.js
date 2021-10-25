@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios'
 import './App.css';
+import './Blog.css';
 
 console.log('NODE_ENV value:', process.env.NODE_ENV);
 
@@ -37,30 +38,34 @@ function App() {
     }, [fetchData])
 
 
-    const renderTable = () => {
+    const renderBlogEntries = () => {
         if (!responseData) {
             return <div>Loading ...</div>
-        }
-        else if (responseData.length === 0) {
+        } else if (responseData.length === 0) {
             return <div>No Blog Posts have been Published.</div>
-        }
-        else {
+        } else {
             return responseData.map(entry => {
                 return (
-                    <table key={entry.slug}>
-                        <tbody>
-                        <tr>
-                            <td>{entry.title}</td>
-                        </tr>
-                        <tr>
-                            <td>{entry.publish_date}</td>
-                        </tr>
-                        <tr>
-                            <td>{entry.slug}</td>
-                        </tr>
+                    <div>
+                        <section class="post">
+                            <header class="post-header">
+                                <h2 class="post-title">{entry.title}</h2>
 
-                        </tbody>
-                    </table>
+                                <p class="post-meta">
+                                    By <a href="#" class="post-author">Matt Davis</a> under <a
+                                    class="post-category post-category-design" href="#">CSS</a> <a
+                                    class="post-category post-category-pure" href="#">Pure</a>
+                                </p>
+                            </header>
+
+                            <div class="post-description">
+                                <p>
+                                    {entry.body}
+                                </p>
+                            </div>
+                        </section>
+                    </div>
+
                 )
             })
         }
@@ -70,7 +75,7 @@ function App() {
         <div className="App">
             <button type='button' onClick={fetchData}>Click for Data</button>
 
-            {renderTable()}
+            {renderBlogEntries()}
 
         </div>
     );
