@@ -45,8 +45,7 @@ RUN set -ex \
     && npm run build \
     && DATABASE_URL='' python manage.py collectstatic --noinput \
     && cp build/index.html templates/react-index.html \
-    && rm -rf build/static \
-    && cp build/* static/. \
+    && rm -rf build \
     \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
