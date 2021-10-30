@@ -11,6 +11,6 @@ def index(request):
 
 
 class BlogEntryListView(generics.ListAPIView):
-    queryset = BlogEntry.objects.filter(publish_date__lte=datetime.now())
+    queryset = BlogEntry.objects.filter(publish_date__lte=datetime.now()).order_by('-publish_date')
     serializer_class = BlogEntryListSerializer
     lookup_field = 'slug'

@@ -23,6 +23,6 @@ class BlogEntry(models.Model):
     slug = models.CharField(max_length=128, unique=True)
     title = models.CharField(max_length=1024)
     subtitle = models.CharField(max_length=1024)
-    meta_description = models.CharField(max_length=1024)  # For SEO
+    meta_description = models.CharField(max_length=1024, blank=True)  # For SEO
     body = models.TextField()
     tags = models.ManyToManyField(Tag, blank=True)
