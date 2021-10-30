@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios'
-import { Remarkable } from 'remarkable';
+import {Remarkable} from 'remarkable';
 import './App.css';
 import './Blog.css';
 
@@ -55,13 +55,15 @@ function App() {
                                 <h2 className="post-title">{entry.title}</h2>
 
                                 <p className="post-meta">
-                                    By <a href="mailto:{entry.author.email}" className="post-author">{entry.author.first_name} {entry.author.last_name}</a>
-                                    <a className="post-category post-category-pure" href="{entry.author.website}">Website</a>
+                                    By <a href="mailto:{entry.author.email}"
+                                          className="post-author">{entry.author.first_name} {entry.author.last_name}</a>
+                                    <a className="post-category post-category-pure"
+                                       href="{entry.author.website}">Website</a>
                                 </p>
                             </header>
 
                             <div className="post-description">
-                                <div dangerouslySetInnerHTML={{__html:md.render(entry.body)}} />
+                                <div dangerouslySetInnerHTML={{__html: md.render(entry.body)}}/>
                             </div>
                         </section>
                     </div>
@@ -73,7 +75,9 @@ function App() {
 
     return (
         <div className="pure-g">
-            <div className="pure-u-6-24"><button type='button' onClick={fetchData}>Click for Data</button></div>
+            <div className="pure-u-6-24">
+                <button type='button' onClick={fetchData}>Click for Data</button>
+            </div>
             <div className="pure-u-12-24">{renderBlogEntries()}</div>
             <div className="pure-u-6-24"><p>Right Side</p></div>
         </div>
