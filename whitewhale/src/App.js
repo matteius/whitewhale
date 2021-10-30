@@ -55,10 +55,10 @@ function App() {
                                 <h2 className="post-title">{entry.title}</h2>
 
                                 <p className="post-meta">
-                                    By <a href="mailto:{entry.author.user.email}"
+                                    By <a href={"mailto:" + entry.author.user.email}
                                           className="post-author">{entry.author.user.first_name} {entry.author.user.last_name}</a>
                                     <a className="post-category post-category-pure"
-                                       href="{entry.author.website}">Website</a>
+                                       href={entry.author.website}>Website</a>
                                 </p>
                             </header>
 
