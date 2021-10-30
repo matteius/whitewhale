@@ -29,7 +29,6 @@ function App() {
             }
         })
             .then((response) => {
-                console.log(response.data);
                 setResponseData(response.data)
             })
             .catch((error) => {
@@ -56,9 +55,8 @@ function App() {
                                 <h2 className="post-title">{entry.title}</h2>
 
                                 <p className="post-meta">
-                                    By <a href="#" className="post-author">Matt Davis</a> also
-                                    <a className="post-category post-category-design" href="#">LinkedIn</a>
-                                    <a className="post-category post-category-pure" href="#">Website</a>
+                                    By <a href="mailto:{entry.author.email}" className="post-author">{entry.author.first_name} {entry.author.last_name}</a>
+                                    <a className="post-category post-category-pure" href="{entry.author.website}">Website</a>
                                 </p>
                             </header>
 
