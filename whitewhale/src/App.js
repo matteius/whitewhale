@@ -1,7 +1,11 @@
 import React from "react";
 import axios from 'axios'
+import { Remarkable } from 'remarkable';
 import './App.css';
 import './Blog.css';
+
+var md = new Remarkable();
+
 
 console.log('NODE_ENV value:', process.env.NODE_ENV);
 
@@ -59,7 +63,7 @@ function App() {
                             </header>
 
                             <div class="post-description">
-                                <div dangerouslySetInnerHTML={{__html:entry.body}} />
+                                <div dangerouslySetInnerHTML={{__html:md.render(entry.body)}} />
                             </div>
                         </section>
                     </div>
