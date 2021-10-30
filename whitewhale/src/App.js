@@ -59,9 +59,7 @@ function App() {
                             </header>
 
                             <div class="post-description">
-                                <p>
-                                    {entry.body}
-                                </p>
+                                <div dangerouslySetInnerHTML={{__html:entry.body}} />
                             </div>
                         </section>
                     </div>
