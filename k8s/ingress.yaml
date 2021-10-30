@@ -10,10 +10,21 @@ spec:
   tls:
   - hosts:
     - whitewhale.mobi
+    - www.whitewhale.mobi
     - test.whitewhale.mobi
     secretName: whitewhale-tls
   rules:
   - host: whitewhale.mobi
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: whitewhale
+            port:
+              number: 80
+  - host: www.whitewhale.mobi
     http:
       paths:
       - pathType: Prefix
