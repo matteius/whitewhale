@@ -50,19 +50,19 @@ function App() {
         } else {
             return responseData.map(entry => {
                 return (
-                    <div>
-                        <section class="post">
-                            <header class="post-header">
-                                <h2 class="post-title">{entry.title}</h2>
+                    <div key={entry.slug}>
+                        <section className="post">
+                            <header className="post-header">
+                                <h2 className="post-title">{entry.title}</h2>
 
-                                <p class="post-meta">
-                                    By <a href="#" class="post-author">Matt Davis</a> also
-                                    <a class="post-category post-category-design" href="#">LinkedIn</a>
-                                    <a class="post-category post-category-pure" href="#">Website</a>
+                                <p className="post-meta">
+                                    By <a href="#" className="post-author">Matt Davis</a> also
+                                    <a className="post-category post-category-design" href="#">LinkedIn</a>
+                                    <a className="post-category post-category-pure" href="#">Website</a>
                                 </p>
                             </header>
 
-                            <div class="post-description">
+                            <div className="post-description">
                                 <div dangerouslySetInnerHTML={{__html:md.render(entry.body)}} />
                             </div>
                         </section>
