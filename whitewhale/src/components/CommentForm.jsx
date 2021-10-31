@@ -1,4 +1,4 @@
-import React from 'react';
+import {Formik, Field, Form} from "formik";
 
 
 const CommentForm = () => {
@@ -12,19 +12,21 @@ const CommentForm = () => {
                     alert(JSON.stringify(values, null, 2));
                 }}
             >
-                <label>
-                    Name:
-                    <input type="text" name="name"/>
-                </label>
-                <label>
-                    E-mail:
-                    <input type="text" name="email"/>
-                </label>
-                <label>
-                    Response:
-                    <input type="text" name="response"/>
-                </label>
-                <button type="submit">Submit</button>
+                <Form>
+                    <label>
+                        Name:
+                        <Field name="name" type="text"/>
+                    </label>
+                    <label>
+                        E-mail:
+                        <Field name="email" type="text"/>
+                    </label>
+                    <label>
+                        Response:
+                        <Field name="response" type="text"/>
+                    </label>
+                    <button type="submit">Submit</button>
+                </Form>
             </Formik>
         </div>
     )
