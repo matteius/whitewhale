@@ -4,6 +4,8 @@ import {Remarkable} from 'remarkable';
 import './App.css';
 import './Blog.css';
 
+import CommentForm from './components/CommentForm'
+
 var md = new Remarkable();
 
 
