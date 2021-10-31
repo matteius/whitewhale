@@ -37,7 +37,7 @@ const CommentForm = (entry_id) => {
                         });
                 }}
             >
-                <Form class="pure-form pure-form-aligned">
+                <Form className="pure-form pure-form-aligned">
                     <div className="pure-control-group">
                         <label>Name:</label>
                         <Field name="name" type="text"/>
@@ -48,7 +48,7 @@ const CommentForm = (entry_id) => {
                     </div>
                     <div className="pure-control-group">
                         <label>Response:</label>
-                        <Field name="response" type="textarea"/>
+                        <Field name="response" component="textarea" type="text" rows="5" cols="40"/>
                     </div>
                     <div className="pure-control-group">
                         <button type="submit">Submit</button>
