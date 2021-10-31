@@ -14,8 +14,9 @@ var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_
 
 const CommentFormRendered = (entry_id) => {
     var csrftoken = getCookie('csrftoken');
+    const [renderForm, setRenderForm] = React.useState(true);
     return (
-        <div>
+        <div>{renderForm ? <>
             <h4>Add New Comment</h4>
             <Formik
                 initialValues={{
@@ -36,6 +37,7 @@ const CommentFormRendered = (entry_id) => {
                         .catch(error => {
                             console.error('There was an error!', error);
                         });
+		    setRenderForm(false);
                 }}
             >
                 <Form className="pure-form pure-form-aligned">
@@ -55,7 +57,8 @@ const CommentFormRendered = (entry_id) => {
                         <button type="submit">Submit</button>
                     </div>
                 </Form>
-            </Formik>
+            </Formik></>
+		: <div>Thank you for your comment!</div>}
         </div>
     )
 }
@@ -66,8 +69,7 @@ const CommentForm = (entry_id) => {
     const onClick = () => setShowResults(true)
     return (
         <div>
-            <input type="submit" value="Add Comment" onClick={onClick} />
-            { showResults ? <CommentFormRendered entry_id={entry_id} /> : null }
+            { showResults ? <CommentFormRendered entry_id={entry_id.entry_id} /> : <input type="submit" value="Add Comment" onClick={onClick} /> }
         </div>
     )
 
