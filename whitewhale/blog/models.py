@@ -7,6 +7,9 @@ class UserProfile(models.Model):
     website = models.URLField(blank=True)
     bio = models.TextField()
 
+    def __str__(self):
+        return f"{self.user.username} {self.user.email}"
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)
@@ -26,6 +29,9 @@ class BlogEntry(models.Model):
     meta_description = models.CharField(max_length=1024, blank=True)  # For SEO
     body = models.TextField()
     tags = models.ManyToManyField(Tag, blank=True)
+
+    def __str__(self):
+        return f"{self.slug} - {self.author.user.username}"
 
 
 class Comment(models.Model):
