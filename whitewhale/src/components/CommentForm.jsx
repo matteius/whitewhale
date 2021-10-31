@@ -1,4 +1,12 @@
+import axios from 'axios'
 import {Formik, Field, Form} from "formik";
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
+console.log('Now the value for NODE_ENV is:', process.env.NODE_ENV);
+var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_SERVER;
 
 
 const CommentForm = () => {
@@ -10,21 +18,27 @@ const CommentForm = () => {
                 onSubmit={async (values) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     alert(JSON.stringify(values, null, 2));
+                    axios.post( apiUrl + '/blog/comment/', values)
+                        .then(response => { console.log('The response was: ' + response) })
+                        .catch(error => {
+                            element.parentElement.innerHTML = `Error: ${error.message}`;
+                            console.error('There was an error!', error);
+                        });
                 }}
             >
                 <Form>
                     <label>
                         Name:
                         <Field name="name" type="text"/>
-                    </label>
+                    </label><br/>
                     <label>
                         E-mail:
                         <Field name="email" type="text"/>
-                    </label>
+                    </label><br/>
                     <label>
                         Response:
                         <Field name="response" type="text"/>
-                    </label>
+                    </label><br/>
                     <button type="submit">Submit</button>
                 </Form>
             </Formik>
