@@ -26,3 +26,12 @@ class BlogEntry(models.Model):
     meta_description = models.CharField(max_length=1024, blank=True)  # For SEO
     body = models.TextField()
     tags = models.ManyToManyField(Tag, blank=True)
+
+
+class Comment(models.Model):
+    entry = models.ForeignKey(BlogEntry, on_delete=models.PROTECT)
+    created = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=512)
+    email = models.EmailField()
+    response = models.TextField()
+    approved = models.BooleanField(default=False)

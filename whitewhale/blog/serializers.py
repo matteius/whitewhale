@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from django.contrib.auth.models import User
-from .models import BlogEntry, UserProfile
+from .models import BlogEntry, UserProfile, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,9 +19,16 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = ['user', 'website']
 
 
-class BlogEntryListSerializer(serializers.ModelSerializer):
+class BlogEntrySerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=False, read_only=True)
 
     class Meta:
         model = BlogEntry
         fields = ['author', 'body', 'meta_description', 'publish_date', 'slug', 'subtitle', 'title']
+
+
+class CommentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        exclude = ['approved']
