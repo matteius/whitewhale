@@ -11,9 +11,6 @@ console.log('Now the value for NODE_ENV is:', process.env.NODE_ENV);
 var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_SERVER;
 
 
-var csrftoken = getCookie('csrftoken');
-
-
 const CommentForm = (entry_id) => {
     console.log(entry_id);
     return (
@@ -24,6 +21,7 @@ const CommentForm = (entry_id) => {
                     email: "", name: "", response: ""}}
                 onSubmit={async (values) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
+                    var csrftoken = getCookie('csrftoken');
                     var headers = {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
