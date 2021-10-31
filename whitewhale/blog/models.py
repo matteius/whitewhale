@@ -32,6 +32,6 @@ class Comment(models.Model):
     entry = models.ForeignKey(BlogEntry, on_delete=models.PROTECT)
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=512)
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     response = models.TextField()
     approved = models.BooleanField(default=False)

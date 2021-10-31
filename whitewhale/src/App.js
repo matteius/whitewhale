@@ -5,8 +5,10 @@ import './App.css';
 import './Blog.css';
 
 import CommentForm from './components/CommentForm'
+import Comments from './components/Comments'
 
-var md = new Remarkable();
+
+const md = new Remarkable();
 
 
 console.log('NODE_ENV value:', process.env.NODE_ENV);
@@ -67,8 +69,9 @@ function App() {
                             <div className="post-description">
                                 <div dangerouslySetInnerHTML={{__html: md.render(entry.body)}}/>
                             </div>
-                            <div className="post-comments">Have something to say?  Add to the discussion of {} comments.</div>
+                            <div className="post-comments"></div>
                             <CommentForm entry_id={entry.id}/>
+                            <Comments comments={entry.comments}/>
                         </section>
                     </div>
 

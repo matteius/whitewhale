@@ -2,7 +2,7 @@ import os
 from .base import *
 
 
-DEBUG = True
+DEBUG = False
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',

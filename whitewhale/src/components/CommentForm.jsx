@@ -15,6 +15,8 @@ const CommentForm = (entry_id) => {
     var csrftoken = getCookie('csrftoken');
     return (
         <div>
+            <p>Have something to say?  Add to the discussion of comments. <br />
+                Note: comments only show once they are approved.</p>
             <h4>Add New Comment</h4>
             <Formik
                 initialValues={{csrfmiddlewaretoken: csrftoken, entry: entry_id.entry_id,
