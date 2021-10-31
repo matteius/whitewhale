@@ -17,8 +17,10 @@ const CommentForm = (entry_id) => {
         <div>
             <h4>Add New Comment</h4>
             <Formik
-                initialValues={{csrfmiddlewaretoken: csrftoken, entry: entry_id.entry_id,
-                    email: "", name: "", response: ""}}
+                initialValues={{
+                    csrfmiddlewaretoken: csrftoken, entry: entry_id.entry_id,
+                    email: "", name: "", response: ""
+                }}
                 onSubmit={async (values) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     var headers = {
@@ -26,27 +28,31 @@ const CommentForm = (entry_id) => {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': csrftoken
                     }
-                    axios.post( apiUrl + '/blog/comment/', values, headers)
-                        .then(response => { console.log('The response was: ' + response) })
+                    axios.post(apiUrl + '/blog/comment/', values, headers)
+                        .then(response => {
+                            console.log('The response was: ' + response)
+                        })
                         .catch(error => {
                             console.error('There was an error!', error);
                         });
                 }}
             >
-                <Form>
-                    <label>
-                        Name:
+                <Form className="pure-form pure-form-aligned">
+                    <div className="pure-control-group">
+                        <label>Name:</label>
                         <Field name="name" type="text"/>
-                    </label><br/>
-                    <label>
-                        E-mail:
+                    </div>
+                    <div className="pure-control-group">
+                        <label>E-mail:</label>
                         <Field name="email" type="email"/>
-                    </label><br/>
-                    <label>
-                        Response:
-                        <Field name="response" type="text"/>
-                    </label><br/>
-                    <button type="submit">Submit</button>
+                    </div>
+                    <div className="pure-control-group">
+                        <label>Response:</label>
+                        <Field name="response" component="textarea" type="text" rows="5" cols="40"/>
+                    </div>
+                    <div className="pure-control-group">
+                        <button type="submit">Submit</button>
+                    </div>
                 </Form>
             </Formik>
         </div>
