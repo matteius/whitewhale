@@ -24,13 +24,12 @@ const CommentForm = (entry_id) => {
                     email: "", name: "", response: ""}}
                 onSubmit={async (values) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
-                    alert(JSON.stringify(values, null, 2));
-                    headers = {
+                    var headers = {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                         'X-CSRFToken': csrftoken
                     }
-                    axios.post( apiUrl + '/blog/comment/', values)
+                    axios.post( apiUrl + '/blog/comment/', values, headers)
                         .then(response => { console.log('The response was: ' + response) })
                         .catch(error => {
                             console.error('There was an error!', error);

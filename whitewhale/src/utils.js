@@ -1,3 +1,5 @@
+import jQuery from 'jquery';
+
 
 function getCookie(name) {
     var cookieValue = null;
@@ -13,3 +15,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+export default getCookie
+
