@@ -4,8 +4,8 @@ const Comments = (comments) => {
     if (!comments.comments || comments.length === 0) {
         return <div>No comments available for this Post.</div>
     } else {
-        return (
-		comments.comments.map(comment => {
+        return (<div><h4>Comments</h4>
+		{comments.comments.map(comment => {
 	    let date = new Date(comment.created);
             let name = comment.name;
             if (comment.email) {
@@ -16,8 +16,8 @@ const Comments = (comments) => {
                         <div className="row">By: {name} on {date.toLocaleString()}</div>
                     </div>
             }
-        )
-        )
+        )}
+        </div>)
     }
 }
 export default Comments
