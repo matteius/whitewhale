@@ -12,7 +12,7 @@ var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_
 
 
 const CommentForm = (entry_id) => {
-    console.log(entry_id);
+    var csrftoken = getCookie('csrftoken');
     return (
         <div>
             <h4>Add New Comment</h4>
@@ -21,7 +21,6 @@ const CommentForm = (entry_id) => {
                     email: "", name: "", response: ""}}
                 onSubmit={async (values) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
-                    var csrftoken = getCookie('csrftoken');
                     var headers = {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
