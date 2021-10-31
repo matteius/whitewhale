@@ -2,14 +2,14 @@ import os
 from .base import *
 
 
-DEBUG = False
+DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
 ]
 
-ALLOWED_HOSTS = ['whitewhale.mobi', 'www.whitewhale.mobi']
+ALLOWED_HOSTS = ['whitewhale.mobi', 'www.whitewhale.mobi', '192.168.56.101', '127.0.0.1', 'localhost']
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
