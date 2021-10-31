@@ -41,9 +41,9 @@ RUN set -ex \
     && curl -L https://www.npmjs.com/install.sh | sh \
     && python -m pip install --upgrade pip \
     && pip install --no-cache-dir -r /code/requirements.txt \
+    && pytest \
     && npm install \
     && npm run build \
-    && pytest \
     && DATABASE_URL='' python manage.py collectstatic --noinput \
     && cp build/index.html templates/react-index.html \
     && rm -rf build \
