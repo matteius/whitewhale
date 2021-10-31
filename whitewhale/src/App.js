@@ -69,7 +69,7 @@ function App() {
                             <div className="post-description">
                                 <div dangerouslySetInnerHTML={{__html: md.render(entry.body)}}/>
                             </div>
-                            <div className="post-comments">Have something to say?  Add to the discussion of {} comments.</div>
+                            <div className="post-comments"></div>
                             <CommentForm entry_id={entry.id}/>
                             <Comments comments={entry.comments}/>
                         </section>

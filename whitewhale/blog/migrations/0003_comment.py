@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('name', models.CharField(max_length=512)),
-                ('email', models.EmailField(max_length=254)),
+                ('email', models.EmailField(max_length=254, blank=True)),
                 ('response', models.TextField()),
                 ('approved', models.BooleanField(default=False)),
                 ('entry', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='blog.blogentry')),
