@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {Formik, Field, Form} from "formik";
+import React from 'react';
 import getCookie from "../utils"
 
 
@@ -11,7 +12,7 @@ console.log('Now the value for NODE_ENV is:', process.env.NODE_ENV);
 var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_SERVER;
 
 
-const CommentForm = (entry_id) => {
+const CommentFormRendered = (entry_id) => {
     var csrftoken = getCookie('csrftoken');
     return (
         <div>
@@ -58,4 +59,19 @@ const CommentForm = (entry_id) => {
         </div>
     )
 }
+
+
+const CommentForm = (entry_id) => {
+    const [showResults, setShowResults] = React.useState(false)
+    const onClick = () => setShowResults(true)
+    return (
+        <div>
+            <input type="submit" value="Add Comment" onClick={onClick} />
+            { showResults ? <CommentFormRendered entry_id={entry_id} /> : null }
+        </div>
+    )
+
+}
+
+
 export default CommentForm
