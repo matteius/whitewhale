@@ -29,7 +29,12 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class BlogEntrySerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=False, read_only=True)
-    comments = CommentSerializer(many=True, read_only=True, source='comment_set')
+    comments = serializers.SerializerMethodField('get_comments')
+
+    def get_comments(self, entry):
+        comments = Comment.objects.filter(entry=entry, approved=True)
+        serializer = CommentSerializer(instance=comments, many=True)
+        return serializer.data
 
     class Meta:
         model = BlogEntry
