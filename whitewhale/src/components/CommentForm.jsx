@@ -12,7 +12,6 @@ var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_
 
 
 const CommentForm = (entry_id) => {
-    console.log(entry_id);
     return (
         <div>
             <h4>Add New Comment</h4>
