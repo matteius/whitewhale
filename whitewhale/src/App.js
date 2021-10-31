@@ -69,20 +69,7 @@ function App() {
                                 <div dangerouslySetInnerHTML={{__html: md.render(entry.body)}}/>
                             </div>
                             <div className="post-comments">Have something to say?  Add to the discussion of {} comments.</div>
-      <Formik
-        initialValues={{ name: "", email: "", response: "" }}
-        onSubmit={async (values) => {
-          await new Promise((resolve) => setTimeout(resolve, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
-      >
-        <Form>
-          <Field name="name" type="text" />
-          <Field name="email" type="email" />
-	  <Field name="response" type="text" />
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
+                            <CommentForm/>
                         </section>
                     </div>
 
