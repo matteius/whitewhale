@@ -10,11 +10,12 @@ var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_
 
 
 const CommentForm = (entry_id) => {
+    console.log(entry_id);
     return (
         <div>
             <h4>Add New Comment</h4>
             <Formik
-                initialValues={{name: "", email: "", response: ""}}
+                initialValues={{entry: entry_id.entry_id, name: "", email: "", response: ""}}
                 onSubmit={async (values) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     alert(JSON.stringify(values, null, 2));
@@ -26,7 +27,6 @@ const CommentForm = (entry_id) => {
                 }}
             >
                 <Form>
-                    <input type="hidden" value={entry_id} name="entry" />
                     <label>
                         Name:
                         <Field name="name" type="text"/>
