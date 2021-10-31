@@ -21,7 +21,6 @@ const CommentForm = () => {
                     axios.post( apiUrl + '/blog/comment/', values)
                         .then(response => { console.log('The response was: ' + response) })
                         .catch(error => {
-                            element.parentElement.innerHTML = `Error: ${error.message}`;
                             console.error('There was an error!', error);
                         });
                 }}
