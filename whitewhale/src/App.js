@@ -4,6 +4,8 @@ import {Remarkable} from 'remarkable';
 import './App.css';
 import './Blog.css';
 
+import CommentForm from './components/CommentForm'
+
 var md = new Remarkable();
 
 
@@ -66,6 +68,7 @@ function App() {
                                 <div dangerouslySetInnerHTML={{__html: md.render(entry.body)}}/>
                             </div>
                             <div className="post-comments">Have something to say?  Add to the discussion of {} comments.</div>
+                            <CommentForm entry_id={entry.id}/>
                         </section>
                     </div>
 
