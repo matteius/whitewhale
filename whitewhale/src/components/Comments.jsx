@@ -5,10 +5,14 @@ const Comments = (comments) => {
         return <div>No comments available for this Post.</div>
     } else {
         return comments.comments.map(comment => {
+            let name = comment.name;
+            if (comment.email) {
+                name =  <a href={"mailto:" + comment.email}>{comment.name}</a>;
+            }
                 return (
                     <div key={comment.id}>
                         <p>{comment.response}<br/>
-                            By:  <a href={"mailto:" + comment.email}>{comment.name}</a> on {comment.created}
+                            By: {name} on {comment.created}
                         </p>
                     </div>)
             }

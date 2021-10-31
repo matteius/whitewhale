@@ -64,3 +64,6 @@ class TestBlogCommentsAPI(TestCase):
         self.assertEqual(comment.name, name)
         self.assertEqual(comment.email, email)
         self.assertEqual(comment.response, response)
+
+    def test_get_blog_details_returns_only_approved_comments(self):
+        pass  # TODO
