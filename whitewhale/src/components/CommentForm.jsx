@@ -33,19 +33,13 @@ const CommentForm = (entry_id) => {
                         });
                 }}
             >
-                <Form class="pure-form">
-                    <label>
-                        Name:
-                        <Field name="name" type="text"/>
-                    </label><br/>
-                    <label>
-                        E-mail:
-                        <Field name="email" type="email"/>
-                    </label><br/>
-                    <label>
-                        Response:
-                        <Field name="response" type="text"/>
-                    </label><br/>
+                <Form class="pure-form pure-form-aligned">
+                    <label>Name:</label>
+                    <Field name="name" type="text"/>
+                    <label>E-mail:</label>
+                    <Field name="email" type="email"/>
+                    <label>Response:</label>
+                    <Field name="response" type="textarea"/>
                     <button type="submit">Submit</button>
                 </Form>
             </Formik>
