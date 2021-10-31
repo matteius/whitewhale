@@ -33,7 +33,7 @@ const CommentForm = (entry_id) => {
                         });
                 }}
             >
-                <Form>
+                <Form class="pure-form">
                     <label>
                         Name:
                         <Field name="name" type="text"/>
