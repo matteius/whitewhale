@@ -24,7 +24,7 @@ class BlogEntrySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogEntry
-        fields = ['author', 'body', 'meta_description', 'publish_date', 'slug', 'subtitle', 'title']
+        fields = ['id', 'author', 'body', 'meta_description', 'publish_date', 'slug', 'subtitle', 'title']
 
 
 class CommentSerializer(serializers.ModelSerializer):

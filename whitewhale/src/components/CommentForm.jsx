@@ -9,7 +9,7 @@ console.log('Now the value for NODE_ENV is:', process.env.NODE_ENV);
 var apiUrl = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_SERVER;
 
 
-const CommentForm = () => {
+const CommentForm = (entry_id) => {
     return (
         <div>
             <h4>Add New Comment</h4>
@@ -26,13 +26,14 @@ const CommentForm = () => {
                 }}
             >
                 <Form>
+                    <input type="hidden" value={entry_id} name="entry" />
                     <label>
                         Name:
                         <Field name="name" type="text"/>
                     </label><br/>
                     <label>
                         E-mail:
-                        <Field name="email" type="text"/>
+                        <Field name="email" type="email"/>
                     </label><br/>
                     <label>
                         Response:
