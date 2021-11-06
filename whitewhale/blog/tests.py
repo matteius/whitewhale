@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from django.contrib.auth.models import User
-from django.forms.models import model_to_dict
 from django.test import TestCase
 from django.urls import reverse
 from freezegun import freeze_time
@@ -76,6 +75,10 @@ class TestBlogCommentsAPI(TestCase):
         self.assertEqual(comment.name, name)
         self.assertEqual(comment.email, email)
         self.assertEqual(comment.response, response)
+
+    def test_get_blog_posts_return_only_after_publish_date(self):
+        pass  # TODO
+
 
     def test_get_blog_details_returns_only_approved_comments(self):
         # Given: A sample Blog Entry

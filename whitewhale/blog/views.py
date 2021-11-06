@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.shortcuts import render
+from django.utils import timezone
 from rest_framework import generics
 
 from .serializers import BlogEntrySerializer, CommentSerializer
@@ -11,7 +12,7 @@ def index(request):
 
 
 class BlogEntryListView(generics.ListAPIView):
-    queryset = BlogEntry.objects.filter(publish_date__lte=datetime.now()).order_by('-publish_date')
+    queryset = BlogEntry.objects.filter(publish_date__lte=timezone.now()).order_by('-publish_date')
     serializer_class = BlogEntrySerializer
     lookup_field = 'slug'
 
