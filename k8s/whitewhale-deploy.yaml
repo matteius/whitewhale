@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: whitewhale
+  namespace: whitewhale
   labels:
     app: whitewhale
 spec:
@@ -19,3 +20,17 @@ spec:
           image: registry.digitalocean.com/whitewhale/whitewhale
           ports:
           - containerPort: 8001
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: whitewhale

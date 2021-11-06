@@ -14,11 +14,10 @@ metadata:
     service.beta.kubernetes.io/do-loadbalancer-healthcheck-unhealthy-threshold: "3"
     service.beta.kubernetes.io/do-loadbalancer-healthcheck-healthy-threshold: "5"
 spec:
-  type: LoadBalancer
-  selector:
-    app: whitewhale
   ports:
     - name: http
       protocol: TCP
       port: 80
       targetPort: 8001
+  selector:
+    app: whitewhale

@@ -1,12 +1,6 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: ingress-nginx-controller
-  namespace: ingress-nginx
-  uid: 242782d8-57a1-44fd-af3e-af589378e56e
-  resourceVersion: '390254'
-  generation: 4
-  creationTimestamp: '2021-10-24T00:59:56Z'
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: ingress-nginx
@@ -14,225 +8,22 @@ metadata:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/version: 1.0.4
     helm.sh/chart: ingress-nginx-4.0.6
-  annotations:
-    deployment.kubernetes.io/revision: '3'
-    kubectl.kubernetes.io/last-applied-configuration: >
-      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"2"},"creationTimestamp":"2021-10-24T00:59:56Z","generation":2,"labels":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"ingress-nginx","app.kubernetes.io/version":"1.0.4","helm.sh/chart":"ingress-nginx-4.0.6"},"name":"ingress-nginx-controller","namespace":"ingress-nginx","resourceVersion":"372717","uid":"242782d8-57a1-44fd-af3e-af589378e56e"},"spec":{"progressDeadlineSeconds":600,"replicas":1,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/name":"ingress-nginx"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/name":"ingress-nginx"}},"spec":{"containers":[{"args":["/nginx-ingress-controller","--publish-service=$(POD_NAMESPACE)/ingress-nginx-controller","--election-id=ingress-controller-leader","--controller-class=k8s.io/ingress-nginx","--configmap=$(POD_NAMESPACE)/ingress-nginx-controller","--validating-webhook=:8443","--validating-webhook-certificate=/usr/local/certificates/cert","--validating-webhook-key=/usr/local/certificates/key","--v=3"],"env":[{"name":"POD_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.name"}}},{"name":"POD_NAMESPACE","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"}}},{"name":"LD_PRELOAD","value":"/usr/local/lib/libmimalloc.so"}],"image":"k8s.gcr.io/ingress-nginx/controller:v1.0.4@sha256:545cff00370f28363dad31e3b59a94ba377854d3a11f18988f5f9e56841ef9ef","imagePullPolicy":"IfNotPresent","lifecycle":{"preStop":{"exec":{"command":["/wait-shutdown"]}}},"livenessProbe":{"failureThreshold":5,"httpGet":{"path":"/healthz","port":10254,"scheme":"HTTP"},"initialDelaySeconds":10,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1},"name":"controller","ports":[{"containerPort":80,"name":"http","protocol":"TCP"},{"containerPort":443,"name":"https","protocol":"TCP"},{"containerPort":8443,"name":"webhook","protocol":"TCP"}],"readinessProbe":{"failureThreshold":3,"httpGet":{"path":"/healthz","port":10254,"scheme":"HTTP"},"initialDelaySeconds":10,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1},"resources":{"requests":{"cpu":"100m","memory":"90Mi"}},"securityContext":{"allowPrivilegeEscalation":true,"capabilities":{"add":["NET_BIND_SERVICE"],"drop":["ALL"]},"runAsUser":101},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/usr/local/certificates/","name":"webhook-cert","readOnly":true}]}],"dnsPolicy":"ClusterFirst","nodeSelector":{"kubernetes.io/os":"linux"},"restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"serviceAccount":"ingress-nginx","serviceAccountName":"ingress-nginx","terminationGracePeriodSeconds":300,"volumes":[{"name":"webhook-cert","secret":{"defaultMode":420,"secretName":"ingress-nginx-admission"}}]}}},"status":{"availableReplicas":1,"conditions":[{"lastTransitionTime":"2021-10-24T01:00:26Z","lastUpdateTime":"2021-10-24T01:00:26Z","message":"Deployment
-      has minimum
-      availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"},{"lastTransitionTime":"2021-10-24T00:59:56Z","lastUpdateTime":"2021-10-24T04:49:32Z","message":"ReplicaSet
-      \"ingress-nginx-controller-7554dd7fbb\" has successfully
-      progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"}],"observedGeneration":2,"readyReplicas":1,"replicas":1,"updatedReplicas":1}}
-  managedFields:
-    - manager: kubectl-client-side-apply
-      operation: Update
-      apiVersion: apps/v1
-      time: '2021-10-24T00:59:56Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations': {}
-          'f:labels':
-            .: {}
-            'f:app.kubernetes.io/component': {}
-            'f:app.kubernetes.io/instance': {}
-            'f:app.kubernetes.io/managed-by': {}
-            'f:app.kubernetes.io/name': {}
-            'f:app.kubernetes.io/version': {}
-            'f:helm.sh/chart': {}
-        'f:spec':
-          'f:progressDeadlineSeconds': {}
-          'f:replicas': {}
-          'f:revisionHistoryLimit': {}
-          'f:selector': {}
-          'f:strategy':
-            'f:rollingUpdate':
-              .: {}
-              'f:maxSurge': {}
-              'f:maxUnavailable': {}
-            'f:type': {}
-          'f:template':
-            'f:metadata':
-              'f:labels':
-                .: {}
-                'f:app.kubernetes.io/component': {}
-                'f:app.kubernetes.io/instance': {}
-                'f:app.kubernetes.io/name': {}
-            'f:spec':
-              'f:containers':
-                'k:{"name":"controller"}':
-                  .: {}
-                  'f:env':
-                    .: {}
-                    'k:{"name":"LD_PRELOAD"}':
-                      .: {}
-                      'f:name': {}
-                      'f:value': {}
-                    'k:{"name":"POD_NAME"}':
-                      .: {}
-                      'f:name': {}
-                      'f:valueFrom':
-                        .: {}
-                        'f:fieldRef':
-                          .: {}
-                          'f:apiVersion': {}
-                          'f:fieldPath': {}
-                    'k:{"name":"POD_NAMESPACE"}':
-                      .: {}
-                      'f:name': {}
-                      'f:valueFrom':
-                        .: {}
-                        'f:fieldRef':
-                          .: {}
-                          'f:apiVersion': {}
-                          'f:fieldPath': {}
-                  'f:image': {}
-                  'f:imagePullPolicy': {}
-                  'f:lifecycle':
-                    .: {}
-                    'f:preStop':
-                      .: {}
-                      'f:exec':
-                        .: {}
-                        'f:command': {}
-                  'f:livenessProbe':
-                    .: {}
-                    'f:failureThreshold': {}
-                    'f:httpGet':
-                      .: {}
-                      'f:path': {}
-                      'f:port': {}
-                      'f:scheme': {}
-                    'f:initialDelaySeconds': {}
-                    'f:periodSeconds': {}
-                    'f:successThreshold': {}
-                    'f:timeoutSeconds': {}
-                  'f:name': {}
-                  'f:ports':
-                    .: {}
-                    'k:{"containerPort":80,"protocol":"TCP"}':
-                      .: {}
-                      'f:containerPort': {}
-                      'f:name': {}
-                      'f:protocol': {}
-                    'k:{"containerPort":443,"protocol":"TCP"}':
-                      .: {}
-                      'f:containerPort': {}
-                      'f:name': {}
-                      'f:protocol': {}
-                    'k:{"containerPort":8443,"protocol":"TCP"}':
-                      .: {}
-                      'f:containerPort': {}
-                      'f:name': {}
-                      'f:protocol': {}
-                  'f:readinessProbe':
-                    .: {}
-                    'f:failureThreshold': {}
-                    'f:httpGet':
-                      .: {}
-                      'f:path': {}
-                      'f:port': {}
-                      'f:scheme': {}
-                    'f:initialDelaySeconds': {}
-                    'f:periodSeconds': {}
-                    'f:successThreshold': {}
-                    'f:timeoutSeconds': {}
-                  'f:resources':
-                    .: {}
-                    'f:requests':
-                      .: {}
-                      'f:cpu': {}
-                      'f:memory': {}
-                  'f:securityContext':
-                    .: {}
-                    'f:allowPrivilegeEscalation': {}
-                    'f:capabilities':
-                      .: {}
-                      'f:add': {}
-                      'f:drop': {}
-                    'f:runAsUser': {}
-                  'f:terminationMessagePath': {}
-                  'f:terminationMessagePolicy': {}
-                  'f:volumeMounts':
-                    .: {}
-                    'k:{"mountPath":"/usr/local/certificates/"}':
-                      .: {}
-                      'f:mountPath': {}
-                      'f:name': {}
-                      'f:readOnly': {}
-              'f:dnsPolicy': {}
-              'f:nodeSelector':
-                .: {}
-                'f:kubernetes.io/os': {}
-              'f:restartPolicy': {}
-              'f:schedulerName': {}
-              'f:securityContext': {}
-              'f:serviceAccount': {}
-              'f:serviceAccountName': {}
-              'f:terminationGracePeriodSeconds': {}
-              'f:volumes':
-                .: {}
-                'k:{"name":"webhook-cert"}':
-                  .: {}
-                  'f:name': {}
-                  'f:secret':
-                    .: {}
-                    'f:defaultMode': {}
-                    'f:secretName': {}
-    - manager: kubectl-replace
-      operation: Update
-      apiVersion: apps/v1
-      time: '2021-10-24T04:53:43Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            'f:kubectl.kubernetes.io/last-applied-configuration': {}
-        'f:spec':
-          'f:template':
-            'f:spec':
-              'f:containers':
-                'k:{"name":"controller"}':
-                  'f:args': {}
-    - manager: kube-controller-manager
-      operation: Update
-      apiVersion: apps/v1
-      time: '2021-10-24T05:52:27Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            'f:deployment.kubernetes.io/revision': {}
-        'f:status':
-          'f:availableReplicas': {}
-          'f:conditions':
-            .: {}
-            'k:{"type":"Available"}':
-              .: {}
-              'f:lastTransitionTime': {}
-              'f:lastUpdateTime': {}
-              'f:message': {}
-              'f:reason': {}
-              'f:status': {}
-              'f:type': {}
-            'k:{"type":"Progressing"}':
-              .: {}
-              'f:lastTransitionTime': {}
-              'f:lastUpdateTime': {}
-              'f:message': {}
-              'f:reason': {}
-              'f:status': {}
-              'f:type': {}
-          'f:observedGeneration': {}
-          'f:readyReplicas': {}
-          'f:replicas': {}
-          'f:updatedReplicas': {}
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
 spec:
-  replicas: 1
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app.kubernetes.io/component: controller
       app.kubernetes.io/instance: ingress-nginx
       app.kubernetes.io/name: ingress-nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       creationTimestamp: null
@@ -241,105 +32,104 @@ spec:
         app.kubernetes.io/instance: ingress-nginx
         app.kubernetes.io/name: ingress-nginx
     spec:
-      volumes:
-        - name: webhook-cert
-          secret:
-            secretName: ingress-nginx-admission
-            defaultMode: 420
       containers:
-        - name: controller
-          image: >-
-            k8s.gcr.io/ingress-nginx/controller:v1.0.4@sha256:545cff00370f28363dad31e3b59a94ba377854d3a11f18988f5f9e56841ef9ef
-          args:
-            - /nginx-ingress-controller
-            - '--publish-service=$(POD_NAMESPACE)/ingress-nginx-controller'
-            - '--election-id=ingress-controller-leader'
-            - '--controller-class=k8s.io/ingress-nginx'
-            - '--configmap=$(POD_NAMESPACE)/ingress-nginx-controller'
-            - '--validating-webhook=:8443'
-            - '--validating-webhook-certificate=/usr/local/certificates/cert'
-            - '--validating-webhook-key=/usr/local/certificates/key'
-            - '--v=3'
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-            - name: https
-              containerPort: 443
-              protocol: TCP
-            - name: webhook
-              containerPort: 8443
-              protocol: TCP
-          env:
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.name
-            - name: POD_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.namespace
-            - name: LD_PRELOAD
-              value: /usr/local/lib/libmimalloc.so
-          resources:
-            requests:
-              cpu: 100m
-              memory: 90Mi
-          volumeMounts:
-            - name: webhook-cert
-              readOnly: true
-              mountPath: /usr/local/certificates/
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 10254
-              scheme: HTTP
-            initialDelaySeconds: 10
-            timeoutSeconds: 1
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 5
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: 10254
-              scheme: HTTP
-            initialDelaySeconds: 10
-            timeoutSeconds: 1
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          lifecycle:
-            preStop:
-              exec:
-                command:
-                  - /wait-shutdown
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
-          securityContext:
-            capabilities:
-              add:
-                - NET_BIND_SERVICE
-              drop:
-                - ALL
-            runAsUser: 101
-            allowPrivilegeEscalation: true
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 300
+      - args:
+        - /nginx-ingress-controller
+        - --publish-service=$(POD_NAMESPACE)/ingress-nginx-controller
+        - --election-id=ingress-controller-leader
+        - --controller-class=k8s.io/ingress-nginx
+        - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
+        - --validating-webhook=:8443
+        - --validating-webhook-certificate=/usr/local/certificates/cert
+        - --validating-webhook-key=/usr/local/certificates/key
+        - --v=3
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: LD_PRELOAD
+          value: /usr/local/lib/libmimalloc.so
+        image: k8s.gcr.io/ingress-nginx/controller:v1.0.4@sha256:545cff00370f28363dad31e3b59a94ba377854d3a11f18988f5f9e56841ef9ef
+        imagePullPolicy: IfNotPresent
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /wait-shutdown
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: controller
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        - containerPort: 8443
+          name: webhook
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 10254
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 90Mi
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            add:
+            - NET_BIND_SERVICE
+            drop:
+            - ALL
+          runAsUser: 101
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /usr/local/certificates/
+          name: webhook-cert
+          readOnly: true
       dnsPolicy: ClusterFirst
       nodeSelector:
         kubernetes.io/os: linux
-      serviceAccountName: ingress-nginx
-      serviceAccount: ingress-nginx
-      securityContext: {}
+      restartPolicy: Always
       schedulerName: default-scheduler
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 25%
-      maxSurge: 25%
-  revisionHistoryLimit: 10
-  progressDeadlineSeconds: 600
+      securityContext: {}
+      serviceAccount: ingress-nginx
+      serviceAccountName: ingress-nginx
+      terminationGracePeriodSeconds: 300
+      volumes:
+      - name: webhook-cert
+        secret:
+          defaultMode: 420
+          secretName: ingress-nginx-admission
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: ingress-nginx-controller
