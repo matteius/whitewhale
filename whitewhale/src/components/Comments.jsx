@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Comments = (comments) => {
-    if (!comments.comments || comments.length === 0) {
+const Comments = ({ comments }) => {
+    if (!comments || comments.length === 0) {
         return <div>No comments available for this Post.</div>
     } else {
-        return (<div><h4>Approved Comments</h4>
-            {comments.comments.map(comment => {
+        return (<div><h5>Comments</h5>
+            {comments.map(comment => {
                     let date = new Date(comment.created);
                     let name = comment.name;
                     if (comment.email) {

@@ -40,21 +40,27 @@ const CommentFormRendered = (entry_id) => {
 		    setRenderForm(false);
                 }}
             >
-                <Form className="pure-form pure-form-aligned">
-                    <div className="pure-control-group">
-                        <label>Name:</label>
-                        <Field name="name" type="text"/>
+                <Form className="form-horizontal">
+                    <div className="form-group row">
+                        <label className="col-sm-2 control-label">Name:</label>
+                        <div className="col-sm-8">
+                            <Field name="name" type="text" className="form-control"/>
+                        </div>
                     </div>
-                    <div className="pure-control-group">
-                        <label>E-mail:</label>
-                        <Field name="email" type="email"/>
+                    <div className="form-group row">
+                        <label className="col-sm-2 control-label">E-mail:</label>
+                        <div className="col-sm-8">
+                            <Field name="email" type="email" className="form-control"/>
+                        </div>
                     </div>
-                    <div className="pure-control-group">
-                        <label>Response:</label>
-                        <Field name="response" component="textarea" type="text" rows="5" cols="40"/>
+                    <div className="form-group row">
+                        <label className="col-sm-2 control-label">Response:</label>
+                        <div className="col-sm-8">
+                            <Field name="response" component="textarea" type="text" rows="5" cols="40" className="form-control"/>
+                        </div>
                     </div>
-                    <div className="pure-control-group">
-                        <button type="submit">Submit</button>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </Form>
             </Formik></>
