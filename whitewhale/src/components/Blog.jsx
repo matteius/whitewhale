@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import axios from 'axios'
 import {Remarkable} from 'remarkable';
 
@@ -21,6 +21,7 @@ const md = new Remarkable();
 
 const Blog = (props) => {
     let [responseData, setResponseData] = React.useState(null);
+    const socketRef = useRef();
     const fetchData = React.useCallback(() => {
         axios({
             "method": "GET",
@@ -40,6 +41,10 @@ const Blog = (props) => {
 
     React.useEffect(() => {
         fetchData()
+        socketRef.current = new WebSocket('ws://127.0.0.1:8001')
+        socketRef.current.onerror = e => {
+            console.log('error', e)
+        }
     }, [fetchData])
 
 
@@ -49,6 +54,7 @@ const Blog = (props) => {
         } else if (responseData.length === 0) {
             return <div>No Blog Posts have been Published.</div>
         } else {
+            socketRef.current.send(JSON.stringify({'mattd': 'rocks'}));
             return responseData.map(entry => {
                 let publish_date = new Date(entry.publish_date);
                 return (
