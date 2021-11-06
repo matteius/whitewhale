@@ -54,22 +54,20 @@ function App() {
             return responseData.map(entry => {
                 return (
                     <div key={entry.slug}>
-                        <section className="post">
-                            <header className="post-header">
-                                <h2 className="post-title">{entry.title}</h2>
+                        <section className="blog-post">
+                            <header className="blog-post-header">
+                                <h2 className="blog-post-title">{entry.title}</h2>
 
-                                <p className="post-meta">
+                                <p className="blog-post-meta">
                                     By <a href={"mailto:" + entry.author.user.email}
                                           className="post-author">{entry.author.user.first_name} {entry.author.user.last_name}</a>
-                                    <a className="post-category post-category-pure"
-                                       href={entry.author.website}>Website</a>
                                 </p>
                             </header>
 
-                            <div className="post-description">
+                            <div className="blog-post-description">
                                 <div dangerouslySetInnerHTML={{__html: md.render(entry.body)}}/>
                             </div>
-                            <div className="post-comments"></div>
+                            <div className="blog-post-comments"></div>
                             <CommentForm entry_id={entry.id}/>
                             <Comments comments={entry.comments}/>
                         </section>
@@ -81,13 +79,56 @@ function App() {
     }
 
     return (
-        <div className="pure-g">
-            <div className="pure-u-6-24">
-                <button type='button' onClick={fetchData}>Click for Data</button>
+        <>
+            <div className="blog-masthead">
+                <div className="container">
+                    <nav className="blog-nav">
+                        <a className="blog-nav-item active" href="#">Home</a>
+                        <a className="blog-nav-item" href="#">App2</a>
+                        <a className="blog-nav-item" href="#">About</a>
+                    </nav>
+                </div>
             </div>
-            <div className="pure-u-12-24">{renderBlogEntries()}</div>
-            <div className="pure-u-6-24"><p>Right Side</p></div>
-        </div>
+            <div className="container">
+                <div className="blog-header">
+                    <h1 className="blog-title">The Whitewhale.mobi Blog</h1>
+                    <p className="lead blog-description">Whitewhale.mobi Blog</p>
+                </div>
+                <div className="row">
+                    <div className="col-sm-9 blog-main">
+                        <div>{renderBlogEntries()}</div>
+                        <button type='button' onClick={fetchData}>Click for Data</button>
+                        <nav>
+                            <ul className="pager">
+                                <li><a href="#">Previous</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div className="col-sm-2 col-sm-offset-1 blog-sidebar">
+                        <div className="sidebar-module sidebar-module-inset">
+                            <h4>About</h4>
+                            <p>Perhaps bio goes here.</p>
+                        </div>
+                        <div className="sidebar-module">
+                            <h4>Archives</h4>
+                            <ol className="list-unstyled">
+                                <li><a href="#">November 2021</a></li>
+                                <li><a href="#">October 2021</a></li>
+                            </ol>
+                        </div>
+                        <div className="sidebar-module">
+                            <h4>Elsewhere</h4>
+                            <ol className="list-unstyled">
+                                <li><a href="#">GitHub</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Facebook</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
 
