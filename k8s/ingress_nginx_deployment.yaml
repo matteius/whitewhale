@@ -113,11 +113,8 @@ spec:
           name: webhook-cert
           readOnly: true
       dnsPolicy: ClusterFirst
-      nodeSelector:
-        kubernetes.io/os: linux
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext: {}
       serviceAccount: ingress-nginx
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
@@ -132,4 +129,4 @@ spec:
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app: ingress-nginx-controller
+              app: ingress-nginx
