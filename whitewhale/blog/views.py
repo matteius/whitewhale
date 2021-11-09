@@ -12,9 +12,11 @@ def index(request):
 
 
 class BlogEntryListView(generics.ListAPIView):
-    queryset = BlogEntry.objects.filter(publish_date__lte=timezone.now()).order_by('-publish_date')
     serializer_class = BlogEntrySerializer
     lookup_field = 'slug'
+
+    def get_queryset(self):
+        return BlogEntry.objects.filter(publish_date__lte=timezone.now()).order_by('-publish_date')
 
 
 class CommentView(generics.ListCreateAPIView):
