@@ -34,3 +34,15 @@ spec:
           labelSelector:
             matchLabels:
               app: whitewhale
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - whitewhale
+                topologyKey: "kubernetes.io/hostname"
