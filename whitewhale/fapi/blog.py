@@ -4,7 +4,7 @@ from typing import Optional
 
 from fastapi import FastAPI
 
-os.environ['DJANGO_SETTINGS_MODULE'] = "whitewhale.settings.local"
+os.environ['DJANGO_SETTINGS_MODULE'] = "whitewhale.settings.deployment"
 import django
 django.setup()
 

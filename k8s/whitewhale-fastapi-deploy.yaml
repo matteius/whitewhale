@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whitewhale-fastapi
+  namespace: whitewhale
+  labels:
+    app: whitewhale-fastapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: whitewhale-fastapi
+  template:
+    metadata:
+      labels:
+        app: whitewhale-fastapi
+    spec:
+      containers:
+        - name: whitewhale-fastapi
+          image: registry.digitalocean.com/whitewhale/whitewhale
+          command: ["uvicorn"]
+          args: ["whitewhale.asgi:app", "--host", "0.0.0.0", "--port", "8002",  "--reload"]
+          ports:
+          - containerPort: 8002
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "150m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: whitewhale-fastapi
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - whitewhale-fastapi
+                topologyKey: "kubernetes.io/hostname"
