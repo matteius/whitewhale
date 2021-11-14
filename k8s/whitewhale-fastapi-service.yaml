@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: whitewhale
+  name: whitewhale-fastapi
   namespace: whitewhale
   labels:
-    app: whitewhale
+    app: whitewhale-fastapi
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-size-slug: "lb-small"
@@ -19,6 +19,6 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 8001
+      targetPort: 8002
   selector:
-    app: whitewhale
+    app: whitewhale-fastapi

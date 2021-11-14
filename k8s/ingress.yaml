@@ -41,6 +41,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: whitewhale
+            name: whitewhale-fastapi
             port:
               number: 80
