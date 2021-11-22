@@ -76,7 +76,7 @@ const Blog = (props) => {
                 )
             })
         }
-    }
+    };
 
     return (
         <>
@@ -121,6 +121,6 @@ const Blog = (props) => {
             </div>
         </>
     );
-}
+};
 
 export default Blog
