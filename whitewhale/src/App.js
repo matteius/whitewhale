@@ -1,32 +1,37 @@
 import React, {Component} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 
 import './App.css';
 import Blog from "./components/Blog";
 import './css/Blog.css';
+import About from "./components/About";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics, logEvent } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-function About() {
-  return (
-    <>
-      <main>
-        <h2>Who are we?</h2>
-        <p>
-          That feels like an existential question, don't you
-          think?
-        </p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
-  );
-}
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCTN8kwuUOn7G4QbKLB0cRDijR_zCeik1Q",
+  authDomain: "whitewhale-mobi.firebaseapp.com",
+  projectId: "whitewhale-mobi",
+  storageBucket: "whitewhale-mobi.appspot.com",
+  messagingSenderId: "952669408642",
+  appId: "1:952669408642:web:1f041b2a00c0247e41139b",
+  measurementId: "G-ZM8S8NHD8C"
+};
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 class App extends Component {
     constructor(props) {
         super(props);
+        logEvent(analytics, 'page_view');
     }
 
     render() {
