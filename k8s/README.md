@@ -3,7 +3,7 @@ Step 1 — Setting Up whitewhale Backend Services
 * kubectl apply -f k8s/whitewhale-deploy.yaml -n whitewhale
 
 Step 2 — Setting Up the Kubernetes Nginx Ingress Controller
-* kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
+* kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/do/deploy.yaml
 
 Step 3 — Creating the Ingress Resource
 * kubectl apply -f k8s/ingress.yaml
