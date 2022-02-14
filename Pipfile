@@ -1,0 +1,31 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+# Web server
+uWSGI = "2.0.20"
+# FastAPI Web Framework/Server
+"uvicorn[standard]" = "~=0.17"
+fastapi = "~=0.73"
+# Databases
+psycopg2-binary = "~=2.9"
+# Frameworks
+djangorestframework = "~=3.12"
+django-health-check = "~=3.16"
+django-extensions = "~=3.1"
+django_cors_headers = "~=3.10"
+django = "~=3.2"
+
+
+[dev-packages]
+pytest = "~=6.2"
+pytest-django = "~=4.4"
+pytest-cov = "~=3.0"
+mock = "~=4.0"
+freezegun = "~=1.1"
+
+[requires]
+python_version = "3.10"
