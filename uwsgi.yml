@@ -2,7 +2,7 @@ uwsgi:
   master: true
   procname-master: whitewhale-master
   procname: whitewhale
-  chdir: /code/whitewhale
+  chdir: /usr/src/whitewhale
   module: whitewhale.wsgi
   processes: 4
   enable-threads: true
@@ -10,5 +10,5 @@ uwsgi:
   http: 0.0.0.0:8001
   cache2: name=static,items=100
   static-cache-paths: 100
-  static-map: /static=/code/whitewhale/static
+  static-map: /static=/usr/src/whitewhale/static
   static-expires: '/* 86400'
