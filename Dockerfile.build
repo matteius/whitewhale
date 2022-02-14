@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
-FROM python:3.10-slim
+FROM python:3.10-slim as builder
 
-# Accept in enivornment secrets
+# Accept in environment secrets
 ARG DATABASE_HOST
 ARG DATABASE_PORT
 ARG DATABASE_NAME
@@ -16,17 +16,18 @@ ENV DATABASE_USER=$DATABASE_USER
 ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
 ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
+ENV PIPENV_VENV_IN_PROJECT=1
 ENV DJANGO_SETTINGS_MODULE=whitewhale.settings.test
 ENV PUBLIC_URL=/static
 
-# Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
-RUN mkdir /code/
-WORKDIR /code/
-ADD . /code/
+# Copy your application source to the container
+# (make sure you create a .dockerignore file if any large files or directories should be excluded)
+WORKDIR /usr/src/
+ADD . /usr/src/
 
 # Install build deps, then run `pip install`, then remove unneeded build deps all in a single step.
 # Correct the path to your production requirements file, if needed.
-WORKDIR /code/whitewhale/
+WORKDIR /usr/src/whitewhale/
 RUN set -ex \
     && BUILD_DEPS=" \
     build-essential \
@@ -40,17 +41,42 @@ RUN set -ex \
     && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && curl -L https://www.npmjs.com/install.sh | sh \
     && python -m pip install --upgrade pip \
-    && pip install --no-cache-dir -r /code/requirements.txt \
-    && pytest \
+    && pip install pipenv \
+    && pipenv sync --dev \
+    && pipenv run pytest \
     && npm install \
     && npm run build \
-    && DATABASE_URL='' python manage.py collectstatic --noinput \
+    && DATABASE_URL='' /usr/src/.venv/bin/python manage.py collectstatic --noinput \
     && cp build/index.html templates/react-index.html \
     && rm -rf build \
     \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
 
+
+FROM python:3.10-slim as runtime
+
+# Accept in environment secrets
+ARG DATABASE_HOST
+ARG DATABASE_PORT
+ARG DATABASE_NAME
+ARG DATABASE_USER
+ARG DATABASE_PASSWORD
+ARG DJANGO_SECRET_KEY
+
+ENV DATABASE_HOST=$DATABASE_HOST
+ENV DATABASE_PORT=$DATABASE_PORT
+ENV DATABASE_NAME=$DATABASE_NAME
+ENV DATABASE_USER=$DATABASE_USER
+ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
+ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+
+
+COPY --from=builder /usr/src/ /usr/src/
+WORKDIR /usr/src/whitewhale/
+
+RUN useradd --create-home --shell /bin/bash whitewhale
+USER whitewhale
 
 # Use Deployment settings to run uwsgi
 ENV DJANGO_SETTINGS_MODULE=whitewhale.settings.deployment
@@ -59,7 +85,7 @@ ENV DJANGO_SETTINGS_MODULE=whitewhale.settings.deployment
 # ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
 
 # Uncomment after creating your docker-entrypoint.sh
-# ENTRYPOINT ["/code/docker-entrypoint.sh"]
+# ENTRYPOINT ["/usr/src/docker-entrypoint.sh"]
 
 # Start uWSGI
-CMD ["uwsgi", "--yaml", "/code/uwsgi.yml"]
+CMD ["/usr/src/.venv/bin/uwsgi", "--yaml", "/usr/src/uwsgi.yml"]
